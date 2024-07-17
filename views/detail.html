@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Artist Info</title>
+	<link rel="stylesheet" href="../static/css/detail.css">
+  <link rel="stylesheet" href="../static/css/background.css">
+  <link rel="stylesheet" href="../static/css/list.css">
+</head>
+<body>
+  <div class="background">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+	<div class="card animation-target">
+		<input type="radio" name="select" id="slide_1" checked>
+		<input type="checkbox" id="slideImg">
+		<div class="inner_part">
+		  <label for="slideImg" class="img">
+			<img class="img_1 animation-target" src="{{ .A.Image }}">
+      <div class="creation animation-target">
+        <h3>First album date: </h3>
+        <p>{{ .A.CreationDate }}</p>
+      </div>
+      <div class="firstAlbum animation-target">
+        <h3>Release of First Album: </h3>
+        <p>{{ .A.FirstAlbum }}</p>
+      </div>
+		  </label>
+		  <div class="content content_1">
+			<div class="title animation-target">{{ .A.Name }}</div>
+			<div class="text">
+        <div class="mtree-demo animation-target">
+          <ul class="mtree transit bubba" style="opacity: 1;">
+              <li class="mtree-node mtree-closed" style="opacity: 1; transform: translateY(0px);">
+                  <a href="#" style="cursor: pointer;">Members</a>
+                  <ul class="mtree-level-1 animation-target1" style="overflow: hidden; height: 0px; display: none;">
+                    {{ range $value := .A.Members }}
+                      <li style="opacity: 1; transform: translateY(0px);"><a href="#">{{ $value }}</a></li>
+                    {{ end }}
+                  </ul>
+              </li>
+          </ul>
+          <ul class="mtree transit bubba" style="opacity: 1;">
+            <li class="mtree-node mtree-closed" style="opacity: 1; transform: translateY(0px);">
+              <a href="#" style="cursor: pointer;">Dates</a>
+                <ul class="mtree-level-1 animation-target1" style="overflow: hidden; height: 0px; display: none;">
+                    {{ range $value := .D.Dates }}
+                        <li style="opacity: 1; transform: translateY(0px);"><a href="#">{{ $value }}</a></li>
+                    {{ end }}
+                </ul>
+            </li>
+          </ul>
+          <ul class="mtree transit bubba" style="opacity: 1;">
+            <li class="mtree-node mtree-closed" style="opacity: 1; transform: translateY(0px);">
+                <a href="#" style="cursor: pointer;">Concerts</a>
+                <ul class="mtree-level-1 animation-target1" style="overflow: hidden; height: 0px; display: none;">
+                    {{ range $value := .L.Locations }}
+                        <li style="opacity: 1; transform: translateY(0px);"><a href="#">{{ $value }}</a></li>
+                    {{ end }}
+                </ul>
+            </li>
+          </ul>
+          <ul class="mtree transit bubba" style="opacity: 1;">
+            <li class="mtree-node mtree-closed" style="opacity: 1; transform: translateY(0px);">
+                <a href="#" style="cursor: pointer;">Concerts & Dates </a>
+                <ul class="mtree-level-1 animation-target1" style="overflow: hidden; height: 0px; display: none;">
+                  {{ range $key, $value := .R.DatesLocations }}
+                    {{ range $value}}
+                    <li style="opacity: 1; transform: translateY(0px);"><a href="#">{{ $key }}: {{.}}</a></li>
+                    {{ end }}
+                  {{ end }}  
+                </ul>
+            </li>
+        </ul>
+      </div>
+      </div>
+		  </div>
+	  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.7/velocity.min.js"></script>
+  <script src="../static/js/app.js"></script>
+  <script>
+     $(document).ready(function() {
+    $('.mtree-node a').on('click', function(e) {
+      e.preventDefault();
+      var targetList = $(this).parent().find('.mtree-level-1');
+      var isOpen = targetList.is(':visible');
+      $('.mtree-level-1').not(targetList).slideUp(400);
+      if (!isOpen) {
+        targetList.slideDown(400);
+      }
+    });
+  });
+  $(document).ready(function() {
+    $('.img_1').click(function() {
+      window.location.href = "http://localhost:8045/artists";
+    });
+  });
+  </script>
+</body>
+</html>
+

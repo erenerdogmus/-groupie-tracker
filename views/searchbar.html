@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search with Filters</title>
+    <link rel="stylesheet" href="../static/css/search.css" />
+    <link rel="stylesheet" href="../static/css/background.css" />
+    <link rel="stylesheet" href="../static/css/searchbar.css" />
+    <link rel="stylesheet" href="../static/css/list2.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-QNQ8WtsjVvXN/KSoKDwVtX0nLXTFehIjzVbw8rDFAfW/DzAElhkv5qWBRPv9vzlg" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <div class="container2">
+    <div class="lst">
+      <h1>Search Bar</h1>
+      <!-- Filter butonu -->
+      <button id="filterBtn"><i class="fas fa-filter"></i></button>
+    </div>
+    <form action="/search" method="post">
+      <div class="search-container">
+          <div class="search-field">
+            <input type="text" class="input" name="search" placeholder="Search" />
+            <button id="searchBtn" type="submit">Search</button>
+          </div>
+      </div>
+    </form>
+    
+    </div>
+    <!-- Filtre kartı -->
+    <div class="filter-container">
+      <form action="/search" method="GET">
+        <!-- Filtreleme bileşenleri buraya gelecek -->
+        <h1>Filters</h1>
+        <h3>Select a creation date</h3>
+        <div class="filt">
+          <div class="range-container">
+            <input type="range" id="fromCD" name="fromCD" min="1957" max="2020" value="1957" class="range-slider"/>
+            <div class="range-labels">
+              <span class="range-label">1957</span>
+            </div>
+          </div>
+          <div class="range-container">
+            <input type="range" id="fromFA" name="fromFA" min="1957" max="2020" value="1957" class="range-slider"/>
+            <div class="range-labels">
+              <span class="range-label">1957</span>
+            </div>
+          </div>
+        </div>
+        <label for="member">Choose a number of members:</label>
+        <div class="checkbox-options" name="member">
+          <input type="checkbox" id="member1" name="member" value="1">
+          <label for="member1">1</label>
+          <input type="checkbox" id="member2" name="member" value="2">
+          <label for="member2">2</label>
+          <input type="checkbox" id="member3" name="member" value="3">
+          <label for="member3">3</label>
+          <input type="checkbox" id="member4" name="member" value="4">
+          <label for="member4">4</label>
+          <input type="checkbox" id="member5" name="member" value="5">
+          <label for="member5">5</label>
+          <input type="checkbox" id="member6" name="member" value="6">
+          <label for="member6">6</label>
+          <input type="checkbox" id="member7" name="member" value="7">
+          <label for="member7">7</label>
+          <input type="checkbox" id="member8" name="member" value="8">
+          <label for="member8">8</label>
+        </div>
+        <label for="fromFA">Period of Debut Album:</label>
+        <div class="date">
+          <input type="date" id="toFAo" name="toFAo" />
+          <input type="date" id="toFA" name="toFA" />
+        </div>
+        <label for="location">City/country of concerts:</label>
+        <div class="city">
+          <input type="text" id="location" name="location" />
+          <button type="submit">Apply Filters</button>
+          <button id="filterBtn"><i class="fas fa-search"></i></i></button>
+        </div>
+      </form>
+    </div>
+  
+    <div class="background pst">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="result-bar">
+      <div class="view-switch">
+        <button id="view1"class="active" ><i class="fas fa-list-ul"></i></button>
+        <button id="view2" ><i class="fas fa-th-large"></i></button>
+        
+      </div>
+      <div class="result-count">
+        Showing 1-9 of 18 results
+      </div>
+    </div>
+
+    <!-- View 1 -->
+    <div  id="view1Table" class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-2">Artist/Band name</div>
+          <div class="col col-3">Members</div>
+          <div class="col col-4">Concert locations</div>
+          <div class="col col-5">First album date</div>
+          <div class="col col-6" style="padding-right: 80px">
+            Release of First Album
+          </div>
+        </li>
+        {{ range . }}
+        <li class="table-row">
+          <div class="col col-2">{{ .A.Name }}</div>
+          <div class="col col-3">
+            <ul>
+              {{ range $value := .A.Members }}
+              <li><div>{{ $value }}</div></li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="col col-4">
+            <ul>
+              {{ range $value := .L.Locations }}
+              <li><div>{{ $value }}</div></li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="col col-5">{{ .A.CreationDate }}</div>
+          <div class="col col-6">{{ .A.FirstAlbum }}</div>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    <!-- View 1 end -->
+
+    <!-- View 2 -->
+    <div id="view2Table" class="container1" style="display: none;">
+      <h1>eren</h1>
+    </div>
+    </div>
+    <script>
+
+      // Range slider'ın altındaki değerleri güncelleyen JavaScript kodu
+      const fromCDSlider = document.getElementById("fromCD");
+      const fromFASlider = document.getElementById("fromFA");
+      const minCDLabel = document
+        .querySelectorAll(".range-container")[0]
+        .querySelector(".range-labels .range-label:first-child");
+      const maxCDLabel = document
+        .querySelectorAll(".range-container")[0]
+        .querySelector(".range-labels .range-label:last-child");
+      const minFALabel = document
+        .querySelectorAll(".range-container")[1]
+        .querySelector(".range-labels .range-label:first-child");
+      const maxFALabel = document
+        .querySelectorAll(".range-container")[1]
+        .querySelector(".range-labels .range-label:last-child");
+
+      fromCDSlider.addEventListener("input", () => {
+        minCDLabel.textContent = fromCDSlider.value;
+      });
+
+      fromCDSlider.addEventListener("change", () => {
+        maxCDLabel.textContent = fromCDSlider.value;
+      });
+
+      fromFASlider.addEventListener("input", () => {
+        minFALabel.textContent = fromFASlider.value;
+      });
+
+      fromFASlider.addEventListener("change", () => {
+        maxFALabel.textContent = fromFASlider.value;
+      });
+      $(document).ready(function() {
+  $("#filterBtn").click(function() {
+    $("#filterContainer").toggleClass("show");
+  });
+});
+
+$(document).ready(function() {
+  // Filtreleme butonuna tıklama olayını dinle
+  $("#filterBtn").click(function(e) {
+    e.preventDefault(); // Form gönderimini engelle
+    $(".filter-container").toggleClass("show"); // Filtre konteynırını göster/gizle
+    $(".container2").toggleClass("hide"); // Arama çubuğunu göster/gizle
+  });
+
+  // Filtreleme uygula butonuna tıklama olayını dinle
+  $("#filterApplyBtn").click(function(e) {
+    e.preventDefault(); // Form gönderimini engelle
+    $(".filter-container").removeClass("show"); // Filtre konteynırını gizle
+    $(".container2").addClass("hide"); // Arama çubuğunu gizle
+    // Burada filtreleme işlemlerini yapabilirsiniz
+    // Örneğin, form verilerini alıp sunucuya gönderebilirsiniz
+  });
+
+  // Arama butonuna tıklama olayını dinle
+  $("#searchBtn").click(function() {
+    $(".container2").removeClass("hide"); // Arama çubuğunu göster
+  });
+});
+
+// View 1 butonuna tıklama olayını dinle
+document.getElementById("view1").addEventListener("click", function() {
+      // View 1 butonunu aktif yap
+      document.getElementById("view1").classList.add("active");
+      // View 2 butonunu pasif yap
+      document.getElementById("view2").classList.remove("active");
+      // View 1 tablosunu göster
+      document.getElementById("view1Table").style.display = "block";
+      // View 2 tablosunu gizle
+      document.getElementById("view2Table").style.display = "none";
+    });
+
+    // View 2 butonuna tıklama olayını dinle
+    document.getElementById("view2").addEventListener("click", function() {
+      // View 2 butonunu aktif yap
+      document.getElementById("view2").classList.add("active");
+      // View 1 butonunu pasif yap
+      document.getElementById("view1").classList.remove("active");
+      // View 2 tablosunu göster
+      document.getElementById("view2Table").style.display = "block";
+      // View 1 tablosunu gizle
+      document.getElementById("view1Table").style.display = "none";
+    });
+    </script>
+  </body>
+</html>

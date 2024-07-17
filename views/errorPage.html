@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
+  <link rel="stylesheet" href="../static/css/background.css">
+  <style>
+    @keyframes move {
+      100% {
+          transform: translate3d(0, 0, 1px) rotate(360deg);
+      }
+    } 
+    .background {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background: #000000;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .background span {
+      width: 1vmin;
+      height: 1vmin;
+      border-radius: 1vmin;
+      backface-visibility: hidden;
+      position: absolute;
+      animation: move;
+      animation-duration: 45s; /* Saniye cinsinden düzenlendi */
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .error{
+      position: fixed; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      text-align: center;
+      color: rgb(255, 255, 255);
+      font-family: "Verdana";
+      font-size: large;
+      background-color: transparent;
+      border-radius: 50px;
+      padding: 20px;
+      z-index: 1; 
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <bdy>
+    <div class="error">
+            <h1>
+{{.ErrorNum}}
+            </h1>
+    <br>
+            <p >
+<pre>{{.ErrorMes}}</pre>  
+            </p> 
+    </div>
+    </br>
+</bdy>
+</body>
+</html>

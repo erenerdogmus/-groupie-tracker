@@ -1,0 +1,291 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+.container2 {
+  margin-top: 50px !important;
+  position: relative;
+  z-index: 999;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(167, 166, 166);
+}
+#search {
+  font-size: 20px;
+}
+h1 {
+  text-align: center;
+  color: #dbdbdb;
+  text-transform: uppercase;
+}
+#filterSelect {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.search-container {
+  position: relative;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+  margin: 0 20px 20px 20px;
+}
+.search-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.search-field input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.search-field button {
+  padding: 12px 10px;
+  border: none;
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+.search-field button:hover {
+  background-color: rgb(79, 79, 79);
+}
+
+.filter-container {
+  margin-top: 60px !important;
+  display: none;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: transparent;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  box-shadow: 0 0 10px rgb(167, 166, 166);
+  padding: 30px;
+}
+
+.filter-container.show {
+  display: block;
+}
+
+.filter-container h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.range-container {
+  margin-bottom: 20px;
+}
+
+.range-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff0000;
+  cursor: pointer;
+  margin-top: -8px;
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff0000;
+  cursor: pointer;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 14px;
+}
+
+.range-label {
+  flex: 1;
+  text-align: center;
+  color: white;
+  font-size: 17px;
+  padding-left: 128%;
+}
+
+.filter-container label {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.filter-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.filter-container button {
+  padding: 10px 10px;
+  border: none;
+  font-size: 18px;
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.filter-container button:hover {
+  background-color: rgb(79, 79, 79);
+}
+.date input {
+  width: 49%;
+  padding: 8px;
+  font-size: 18px;
+}
+.date {
+  display: flex;
+  flex: 2;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.city {
+  display: flex;
+  gap: 20px;
+}
+.city input {
+  width: 81%;
+  padding: 8px;
+  font-size: 18px;
+}
+.filt {
+  display: flex;
+  gap: 340px;
+}
+.filt input {
+  width: 300%;
+}
+
+/* Filter butonu stilini güncelle */
+#filterBtn {
+  padding: 10px 10px!important;
+  border: none;
+  font-size: 18px;
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Filter konteynırını göstermek için */
+.filter-container.show {
+  display: block;
+}
+
+.container2.hide {
+  display: none; /* Arama çubuğunu gizlemek için */
+}
+
+.lst{
+  display: flex;
+}
+
+.lst h1{
+  padding-left: 40%;
+  padding-right: 28%;
+}
+
+.lst button{
+  /* width: auto!important; */
+  width: 70px!important;
+  height: 40px!important; 
+  margin-top: 27px!important;
+}
+
+.lst button:hover{
+  background-color: rgb(79, 79, 79)!important;
+}
+
+.city #filterBtn{
+  width: 70px!important;
+  height:auto!important; 
+}
+
+.city #filterBtn:hover{
+  background-color: rgb(79, 79, 79)!important;
+}
+
+.search-field input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+.checkbox-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-options input[type="checkbox"] {
+  display: none; /* Kutucukları gizle */
+}
+
+.checkbox-options label {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  cursor: pointer;
+  color: black;
+  font-size: 22px;
+  font-weight: bold; 
+}
+
+.checkbox-options label:hover {
+  background-color: #000000;
+  color: #ff0000;
+}
+
+.checkbox-options input[type="checkbox"]:checked + label {
+  background-color: #ff0000; /* Seçili kutucukları vurgula */
+  color: rgb(255, 255, 255);
+}
